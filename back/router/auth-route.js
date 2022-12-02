@@ -14,7 +14,6 @@ router.post('/signup', express.json(),
 
 router.post('/signin', express.json(), authControllers.signin);
 router.post('/logout', express.json(), authControllers.logout);
-// router.get('/activate/:link', AuthController.activate);
 router.get('/refresh', authControllers.refresh);
 router.get('/users', authControllers.getUsers);
 router.get('/users/:id', authControllers.getUserById);
