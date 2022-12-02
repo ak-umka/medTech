@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 
 
 import router from './router/auth-route.js';
+import inspectionRouter from './router/inspection-route.js';
 import errorMiddleware from './middlewares/error-middlewares.js';
 
 dotenv.config()
@@ -19,7 +20,7 @@ app.use(cookieParser())
 app.use(errorMiddleware)
 
 app.use('/images', express.static('images'));
-app.use('/api/v0', router);
+app.use('/api/v0', router, inspectionRouter);
 
 const start = async () => {
   try {
