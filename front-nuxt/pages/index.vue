@@ -1,5 +1,7 @@
 <template>
-  <Tutorial />
+  <div>
+      fdsfddsf
+  </div>
 </template>
 
 <script>

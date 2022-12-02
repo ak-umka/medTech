@@ -12,14 +12,48 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+
   ssr: true,
+  target: "server",
+  server: {
+    host: "0.0.0.0",
+    port: 3001,
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/scss/app.css"],
+  // css: ["@/assets/scss/app.scss"],
 
   plugins: [
     { src: "~/plugins/vuelidate" },
   ],
+
+  auth: {
+    redirect: {
+      logout: "/logout",
+      login: "/signin",
+      home: "/",
+      callback: false,
+    },
+    strategies: {
+      local: {
+        token: {
+          property: "access_token",
+          global: true,
+          maxAge: 86400,
+        },
+        autoFetchUser: false,
+        endpoints: {
+          login: {
+            url: "api/login",
+            method: "post",
+            propertyName: "access_token",
+          },
+          user: false,
+        },
+        autoLogout: true,
+      },
+    },
+  },
 
   components: true,
 
@@ -38,7 +72,16 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    proxy: true,
+  },
+
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3001/',
+      pathRewrite: {
+        '^/api': '/api',
+      },
+    },
   },
 
   build: {},
