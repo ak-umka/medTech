@@ -6,14 +6,14 @@ import UserDto from '../dtos/user-dto.js';
 import ApiError from '../exceptions/api-error.js';
 
 class AuthService {
-  async signup(email, password, firstname, lastname) {
+  async signup(email, password, firstname, lastname, role) {
     const checkUser = await User.findOne({ email: email });
     if (checkUser) {
       throw ApiError.BadRequestError('User already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 3);
-    const user = await User.create({ email, password: hashedPassword, firstname, lastname });
+    const user = await User.create({ email, password: hashedPassword, firstname, lastname, role });
 
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
