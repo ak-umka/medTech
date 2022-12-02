@@ -1,66 +1,54 @@
 import mongoose from "mongoose";
 
 const inspectionSchema = new mongoose.Schema({
-    complaints: [{                                  // Жалобы при поступлении
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Complaints',
+    complaints: {                                  // Жалобы при поступлении
+        type: String,
         required: true
-    }],
-    medicalHistory: [{                              // Анамнез заболевания
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'MedicalHistory',
+    },
+    medicalHistory: {                              // Анамнез заболевания
+        type: String,
         required: true
-    }],
-    AnamnesisOfLife: [{                             //  Анамнез жизни
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'AnamnesisOfLife',
+    },
+    AnamnesisOfLife: {                             //  Анамнез жизни
+        type: String,
         required: true
-    }],
-    AllergologicalHistory: [{                       // Аллергологический анамнез
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'AllergologicalHistory',
+    },
+    AllergologicalHistory: {                       // Аллергологический анамнез
+        type: String,
         required: true
-    }],
-    PurposeOfHospitalization: [{                    // Цель госпитализации
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'PurposeOfHospitalization',
+    },
+    PurposeOfHospitalization: {                    // Цель госпитализации
+        type: String,
         required: true
-    }],
-    lastSurvey: [{                                  // Последний обследование
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'LastSurvey',
+    },
+    lastSurvey: {                                  // Последний обследование
+        type: String,
         required: true
-    }],
-    objectiveData: [{                               // Объективные данные
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ObjectiveData',
+    },
+    objectiveData: {                               // Объективные данные
+        type: String,
         required: true
-    }],
-    survey: [{                                      // Обследование
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Survey',
+    },
+    survey: {                                      // Обследование
+        type: String,
         required: true
-    }],
-    treatmentPlan: [{                               // Лечебный план
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'TreatmentPlan',
+    },
+    treatmentPlan: {                               // Лечебный план
+        type: String,
         required: true
-    }],
-    other: [{                                       // Прочее
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Other',
+    },
+    other: {                                       // Прочее
+        type: String,
         required: true
-    }],
-    underlyingDisease: [{                           // Основное заболевание
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UnderlyingDisease',
+    },
+    underlyingDisease: {                           // Основное заболевание
+        type: String,
         required: true
-    }],
-    concomitantDisease: [{                          //Сопутствующее заболевание
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ConcomitantDisease',
+    },
+    concomitantDisease: {                          //Сопутствующее заболевание
+        type: String,
         required: true
-    }],
+    },
     doctor: {                                      //Врач
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -73,8 +61,9 @@ const inspectionSchema = new mongoose.Schema({
     },
     date: {                                         //Дата
         type: Date,
-        required: false
+        default: Date.now
     },
+
 });
 
 export default mongoose.model('Inspection', inspectionSchema);
