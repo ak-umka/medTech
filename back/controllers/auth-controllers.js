@@ -17,7 +17,7 @@ class AuthController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async signin(req, res, next) {
     try {
@@ -28,7 +28,7 @@ class AuthController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async logout(req, res, next) {
     try {
@@ -40,7 +40,7 @@ class AuthController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async refresh(req, res, next) {
     try {
@@ -51,7 +51,7 @@ class AuthController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async getUsers(req, res, next) {
     try {
@@ -60,7 +60,27 @@ class AuthController {
     } catch (error) {
       next(error);
     }
-  }
+  };
+
+  async getUserById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const user = await authService.getUserById(id);
+      return res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  async deleteUser(req, res, next) {
+    try {
+      const { id } = req.params;
+      const user = await authService.deleteUser(id);
+      return res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 
 }
 

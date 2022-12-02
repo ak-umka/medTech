@@ -17,6 +17,8 @@ router.post('/logout', express.json(), authControllers.logout);
 // router.get('/activate/:link', AuthController.activate);
 router.get('/refresh', authControllers.refresh);
 router.get('/users', authControllers.getUsers);
+router.get('/users/:id', authControllers.getUserById);
+router.delete('/users/:id', authControllers.deleteUser);
 
 
 export default router;

@@ -60,7 +60,23 @@ class AuthService {
 
   async getUsers() {
     const users = await User.find();
-    return users;
+    return users.map(user => {
+      return { id: user.id, email: user.email, firstname: user.firstname, lastname: user.lastname, role: user.role };
+    });
+  }
+
+  async getUserById(id) {
+    const user = await User.findById(id);
+    return { id: user.id, email: user.email, firstname: user.firstname, lastname: user.lastname, role: user.role };
+  }
+
+  async deleteUser(id) {
+    if (!id) {
+      throw ApiError.BadRequestError('User id is required');
+    } else {
+      await User.findByIdAndDelete(id);
+      return 'User deleted';
+    }
   }
 }
 
