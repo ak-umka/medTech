@@ -11,9 +11,15 @@ class InspectionController {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest('Validation error', errors.array()));
             }
-            const doctor = await User.findById(req.body.doctorId);
-            const patient = await User.findById(req.body.patientId);
-            const inspection = await Inspection.createInspection(doctor, patient);
+            const {
+                complaints, medicalHistory, AnamnesisOfLife, AllergologicalHistory, PurposeOfHospitalization,
+                lastSurvey, objectiveData, survey, treatmentPlan, other, underlyingDisease, concomitantDisease,
+                doctorId, patientId
+            } = req.body;
+            const inspection = await Inspection.createInspection(
+                complaints, medicalHistory, AnamnesisOfLife, AllergologicalHistory, PurposeOfHospitalization,
+                lastSurvey, objectiveData, survey, treatmentPlan, other, underlyingDisease, concomitantDisease,
+                doctorId, patientId);
             return res.json(inspection);
         } catch (error) {
             next(error);
