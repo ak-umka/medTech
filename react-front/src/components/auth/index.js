@@ -10,7 +10,8 @@ export const Auth = (props) => {
     formState: { errors },
   } = useForm()
   const onSubmit = (data) => {
-    dispatch(props.register ? registation(data) : login(data))
+    // dispatch(props.register ? registation(data) : login(data))
+    console.log(data)
   }
 
   return (
