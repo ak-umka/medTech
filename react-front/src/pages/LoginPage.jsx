@@ -4,7 +4,7 @@ function LoginPage() {
   return (
     <>
       <div>
-        <Auth register={false} />
+        <Auth />
       </div>
     </>
   )

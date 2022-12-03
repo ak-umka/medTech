@@ -3,7 +3,7 @@ function RegisterPage() {
   return (
     <>
       <div>
-        <Auth register={true} />
+        <Auth reg={true} />
       </div>
     </>
   )
