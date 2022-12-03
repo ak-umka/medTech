@@ -1,12 +1,12 @@
+import { Auth } from 'components/auth'
 function RegisterPage() {
   return (
     <>
       <div>
-
-        <h1>RegisterPage</h1>
+        <Auth register={true} />
       </div>
     </>
-  );
+  )
 }
 
-export default RegisterPage;
+export default RegisterPage
