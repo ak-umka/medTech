@@ -123,16 +123,19 @@ export const Auth = (props) => {
                       )}
                     </div>
 
-                    <div className="form-outline mb-4">
-                      <select
-                        class="form-select "
-                        aria-label="Default select example"
-                      >
-                        <option selected>Patient</option>
-                        <option value="1">Doctor</option>
-                      </select>
-                    </div>
-
+                    {props.reg ? (
+                      <div className="form-outline mb-4">
+                        <select
+                          class="form-select "
+                          aria-label="Default select example"
+                        >
+                          <option selected>Patient</option>
+                          <option value="1">Doctor</option>
+                        </select>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                     {/* Submit  */}
                     <button
                       type="submit"
