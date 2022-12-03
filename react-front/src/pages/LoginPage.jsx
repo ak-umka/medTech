@@ -1,11 +1,13 @@
+import { Auth } from 'components/auth'
+
 function LoginPage() {
   return (
     <>
       <div>
-        <h1>LoginPage</h1>
+        <Auth register={false} />
       </div>
     </>
-  );
+  )
 }
 
-export default LoginPage;
+export default LoginPage

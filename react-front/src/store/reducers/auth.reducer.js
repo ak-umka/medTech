@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { registation, login } from 'store/actions/auth.action'
 
 const initialState = {
-  data: null,
+  register: null,
+  login: null,
   loading: false,
   error: null,
 }
@@ -21,13 +22,17 @@ const AuthSlice = createSlice({
         state.loading = true
         state.error = null
       })
-      .addCase(registation.fulfilled || login.pending, (state, action) => {
+      .addCase(registation.fulfilled, (state, action) => {
         state.loading = false
-        state.data = action.payload
+        state.register = action.payload
       })
-      .addMatcher(isRejectedAction, (state, action) => {
+      .addCase(login.pending, (state, action) => {
         state.loading = false
-        state.error = action.payload
+        state.login = action.payload
+      })
+      .addCase(registation.rejected || login.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
       })
   },
 })
