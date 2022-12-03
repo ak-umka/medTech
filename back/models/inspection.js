@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const inspectionSchema = new mongoose.Schema({
-    complaints: {                                  // Жалобы при поступлении
+    complaints: [{                                  // Жалобы при поступлении
         type: String,
         required: true
-    },
-    medicalHistory: {                              // Анамнез заболевания
+    }],
+    medicalHistory: [{                              // Анамнез заболевания
         type: String,
         required: true
-    },
+    }],
     AnamnesisOfLife: {                             //  Анамнез жизни
         type: String,
         required: true
