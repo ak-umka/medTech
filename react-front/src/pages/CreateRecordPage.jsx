@@ -1,5 +1,5 @@
-import TagForm from "components/TagForm";
-import React, { useEffect, useRef, useState } from "react";
+import TagForm from 'components/TagForm'
+import React, { useEffect, useRef, useState } from 'react'
 
 function CreateRecordPage() {
   // const complaints = useRef();
@@ -133,7 +133,7 @@ function CreateRecordPage() {
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default CreateRecordPage;
+export default CreateRecordPage

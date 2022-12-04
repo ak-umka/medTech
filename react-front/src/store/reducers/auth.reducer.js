@@ -8,10 +8,6 @@ const initialState = {
   error: null,
 }
 
-function isRejectedAction(action) {
-  return action.type.endsWith('rejected')
-}
-
 const AuthSlice = createSlice({
   name: 'auth',
   initialState,
