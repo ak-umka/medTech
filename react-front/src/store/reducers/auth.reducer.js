@@ -22,7 +22,7 @@ const AuthSlice = createSlice({
         state.loading = false
         state.register = action.payload
       })
-      .addCase(login.pending, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.loading = false
         state.login = action.payload
       })

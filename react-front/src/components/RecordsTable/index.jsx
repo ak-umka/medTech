@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getRecords } from '../../store/actions/record.action'
 
 function RecordsTable({
-  tableHead = ["№", "Название", "Пациент", "Врач", "Дата", "Действие"],
+  tableHead = ['№', 'Название', 'Пациент', 'Врач', 'Дата', 'Действие'],
   tableContents = [
     {
       id: 1,
-      name: "Задача 1",
-      patientFullName: "Иван Иванович",
-      doctorFullName: "Сасай кудасай",
-      date: "20.01.22",
+      name: 'Задача 1',
+      patientFullName: 'Иван Иванович',
+      doctorFullName: 'Сасай кудасай',
+      date: '20.01.22',
     },
   ],
 }) {
+  const dispatch = useDispatch()
+  const record = useSelector((state) => state.record.data)
+
+  useEffect(() => {
+    dispatch(getRecords())
+  }, [])
   return (
     <>
       <div>
@@ -36,7 +44,7 @@ function RecordsTable({
                   ))}
 
                   <th scope="row">
-                    <button className="btn btn-info">Редактировать</button>{" "}
+                    <button className="btn btn-info">Редактировать</button>{' '}
                     <button className="btn btn-danger">Удалить</button>
                   </th>
                 </tr>
@@ -46,7 +54,7 @@ function RecordsTable({
         </table>
       </div>
     </>
-  );
+  )
 }
 
-export default RecordsTable;
+export default RecordsTable

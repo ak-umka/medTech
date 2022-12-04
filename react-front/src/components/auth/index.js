@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { registation, login } from 'store/actions/auth.action'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const Auth = (props) => {
   const [role, setRole] = useState('')
+  const { register: reg, login: log } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const {
     register,
@@ -16,8 +19,16 @@ export const Auth = (props) => {
   }
 
   useEffect(() => {
-    console.log(role)
-  }, [])
+    if (reg && reg?.user) {
+      navigate('/login')
+    }
+  }, [reg])
+
+  useEffect(() => {
+    if (log && log?.user) {
+      navigate('/records')
+    }
+  }, [log])
 
   return (
     <section className="sign-up">
@@ -41,43 +52,47 @@ export const Auth = (props) => {
               <div className="card">
                 <div className="card-body py-5 px-md-5">
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    {/* Firstname */}
-                    <div className="form-outline mb-4">
-                      <label className="form-label">First name</label>
-                      <input
-                        type="text"
-                        id="first-name"
-                        className="form-control"
-                        {...register('firstname', {
-                          required: true,
-                        })}
-                      />
-                      {errors.firstname && (
-                        <span className="text-danger">
-                          First name is required
-                        </span>
-                      )}
-                    </div>
-                    {/* Lastname */}
-                    <div className="form-outline mb-4">
-                      <label className="form-label">Last name</label>
-                      <input
-                        type="text"
-                        id="last-name"
-                        className="form-control"
-                        {...register('lastname', {
-                          required: true,
-                          pattern: {
-                            message: 'Invalid last name',
-                          },
-                        })}
-                      />
-                      {errors.firstname && (
-                        <span className="text-danger">
-                          Last name is required
-                        </span>
-                      )}
-                    </div>
+                    {props.reg ? (
+                      <>
+                        <div className="form-outline mb-4">
+                          <label className="form-label">First name</label>
+                          <input
+                            type="text"
+                            id="first-name"
+                            className="form-control"
+                            {...register('firstname', {
+                              required: true,
+                            })}
+                          />
+                          {errors.firstname && (
+                            <span className="text-danger">
+                              First name is required
+                            </span>
+                          )}
+                        </div>
+                        <div className="form-outline mb-4">
+                          <label className="form-label">Last name</label>
+                          <input
+                            type="text"
+                            id="last-name"
+                            className="form-control"
+                            {...register('lastname', {
+                              required: true,
+                              pattern: {
+                                message: 'Invalid last name',
+                              },
+                            })}
+                          />
+                          {errors.firstname && (
+                            <span className="text-danger">
+                              Last name is required
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                     {/* Email */}
                     <label className="form-label" htmlFor="email">
                       Email

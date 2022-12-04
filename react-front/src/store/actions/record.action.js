@@ -9,14 +9,14 @@ export const createRecord = createAsyncThunk('record/data', async (payload) => {
 })
 
 export const getRecords = createAsyncThunk('record/data', async (payload) => {
-  const { data } = await axios.post(`${baseUrl}/inspection`, payload)
+  const { data } = await axios.get(`${baseUrl}/inspection`, payload)
   return data
 })
 
 export const getRecordById = createAsyncThunk(
   'record/data',
   async (id, payload) => {
-    const { data } = await axios.post(`${baseUrl}/inspection/${id}`, payload)
+    const { data } = await axios.get(`${baseUrl}/inspection/${id}`, payload)
     return data
   },
 )

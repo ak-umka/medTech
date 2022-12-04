@@ -1,22 +1,27 @@
-import CustomTextArea from "components/CustomTextarea";
-import MedicalHistoryForm from "components/MedicalHistoryForm";
-import TagForm from "components/TagForm";
+import CustomTextArea from 'components/CustomTextarea'
+import MedicalHistoryForm from 'components/MedicalHistoryForm'
+import TagForm from 'components/TagForm'
 // import React, { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { createRecord } from '../store/actions/record.action'
 
 function CreateRecordPage() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     control,
     setValue,
-  } = useForm();
+  } = useForm()
 
   const submitForm = (data) => {
-    console.log(data);
-  };
+    dispatch(createRecord(data))
+    navigate('/records')
+  }
 
   return (
     <>
@@ -33,7 +38,7 @@ function CreateRecordPage() {
                     type="text"
                     className="form-control"
                     id="record-name"
-                    {...register("recordName")}
+                    {...register('recordName')}
                   />
                 </div>
                 <div className="mb-3">
@@ -44,7 +49,7 @@ function CreateRecordPage() {
                     type="text"
                     className="form-control"
                     id="record-patient"
-                    {...register("record-patient")}
+                    {...register('record-patient')}
                   />
                 </div>
                 <div className="mb-3">
@@ -55,7 +60,7 @@ function CreateRecordPage() {
                     type="text"
                     className="form-control"
                     id="record-doctor"
-                    {...register("record-doctor")}
+                    {...register('record-doctor')}
                   />
                 </div>
                 <div className="mb-3">
@@ -66,7 +71,7 @@ function CreateRecordPage() {
                     type="text"
                     className="form-control"
                     id="record-data"
-                    {...register("record-data")}
+                    {...register('record-data')}
                   />
                 </div>
                 <div className="mb-3">
