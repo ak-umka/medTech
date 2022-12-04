@@ -1,4 +1,5 @@
 import CustomTextArea from "components/CustomTextarea";
+import MedicalHistoryForm from "components/MedicalHistoryForm";
 import TagForm from "components/TagForm";
 // import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -78,13 +79,19 @@ function CreateRecordPage() {
                   />
                 </div>
                 <div className="mb-3">
-                  <TagForm
+                  <label className="form-label">Анамнез заболевания</label>
+                  <MedicalHistoryForm
+                    control={control}
+                    setValue={setValue}
+                    name="medicalHistory"
+                  />
+                  {/* <TagForm
                     inputId="medicalHistory"
                     label="Анамнез заболевания"
                     inputName="medicalHistory"
                     control={control}
                     setValue={setValue}
-                  />
+                  /> */}
                 </div>
                 <div className="mb-3">
                   <TagForm

@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-function TagForm({
-  inputId = "inputId",
+import React, { useEffect, useState, useRef } from "react";
+
+function TagInput({
+  module,
+  sendTags,
+  input = "inputId",
   label = "Label",
   btnText = "Добавить",
-  inputName = "inputName",
   type = "text",
   inputType = "input",
-  control = null,
-  setValue,
 }) {
+  //   Tag functions
   const tagInput = useRef();
   const tagRef = useRef();
   const [tags, setTags] = useState([]);
@@ -63,7 +63,7 @@ function TagForm({
   useEffect(() => {
     console.log(tags);
     setText(tags.join(", "));
-    setValue(inputName, {
+    sendTags(module, {
       tags: tags,
       text: text,
     });
@@ -74,12 +74,10 @@ function TagForm({
     tagRef.current.focus();
   }, [editedTag]);
 
+  //   Tag functions
+
   return (
     <>
-      <Controller name={inputName} control={control} render={() => <></>} />
-      <label htmlFor="record-name" className="form-label">
-        {label}
-      </label>
       <div className="row">
         {tags.length ? (
           <div className="col-12 d-flex flex-wrap gap-1 mb-2 ">
@@ -129,8 +127,8 @@ function TagForm({
           <input
             type={type}
             className="form-control"
-            id={inputId}
-            name={inputName}
+            id={input}
+            name={input}
             ref={tagInput}
             onKeyDownCapture={(event) => addTag(event, tagInput)}
           />
@@ -146,4 +144,4 @@ function TagForm({
   );
 }
 
-export default TagForm;
+export default TagInput;
