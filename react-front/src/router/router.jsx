@@ -5,7 +5,7 @@ import {
   RecordsPage,
   CreateRecordPage,
 } from 'pages'
-import Modal from 'components/Modal'
+import Accordion from 'components/Accordion'
 import { Routes, Route } from 'react-router-dom'
 
 function MyRouter() {
@@ -16,7 +16,7 @@ function MyRouter() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/records" element={<RecordsPage />} />
       <Route path="/records/create" element={<CreateRecordPage />} />
-      <Route path="/modal" element={<Modal />} />
+      <Route path="/acc" element={<Accordion />} />
     </Routes>
   )
 }

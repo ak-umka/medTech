@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { OAK } from './form/oak.form'
 import { Biochemical } from './form/biochemical.form'
 import { OAM } from './form/oam.form'
@@ -6,10 +6,15 @@ import { Coagulogram } from './form/coagulogram.form'
 import { BgBC } from './form/bgBC.form'
 import { Tumor } from './form/tumor.form'
 
-function Modal() {
+function Accordion() {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <div className="col-8">
             <div class="accordion" id="accordionExample">
@@ -33,7 +38,7 @@ function Modal() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <OAK />
+                    <OAK register={register} />
                   </div>
                 </div>
               </div>
@@ -58,7 +63,7 @@ function Modal() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <Biochemical />
+                    <Biochemical register={register} />
                   </div>
                 </div>
               </div>
@@ -83,7 +88,7 @@ function Modal() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <OAM />
+                    <OAM register={register} />
                   </div>
                 </div>
               </div>
@@ -115,6 +120,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="microreaction"
+                            {...register('microreaction')}
                           />
                         </div>
                         <div className="col-2">
@@ -153,6 +159,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="kal"
+                            {...register('kal')}
                           />
                         </div>
                         <div className="col-2">
@@ -191,6 +198,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="vich"
+                            {...register('vich')}
                           />
                         </div>
                         <div className="col-2">
@@ -229,6 +237,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="rentgen"
+                            {...register('rentgen')}
                           />
                         </div>
                         <div className="col-2">
@@ -267,6 +276,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="ekg"
+                            {...register('ekg')}
                           />
                         </div>
                         <div className="col-2">
@@ -298,7 +308,7 @@ function Modal() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <Coagulogram />
+                    <Coagulogram register={register} />
                   </div>
                 </div>
               </div>
@@ -330,6 +340,7 @@ function Modal() {
                             type="text"
                             className="form-control"
                             id="anca"
+                            {...register('anca')}
                           />
                         </div>
                         <div className="col-2">
@@ -361,7 +372,7 @@ function Modal() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <BgBC />
+                    <BgBC register={register} />
                   </div>
                 </div>
               </div>
@@ -402,4 +413,4 @@ function Modal() {
   )
 }
 
-export default Modal
+export default Accordion
