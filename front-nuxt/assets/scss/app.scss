@@ -1,0 +1,15 @@
+.custom-container {
+  max-width: 1560px;
+  padding: 60px;
+  margin: auto;
+}
+
+.header .navbar {
+  background-color: #4b7eb6 !important;
+  .navbar-brand {
+    color: white;
+  }
+  .navbar-collapse .navbar-nav .nav-item .nav-link {
+    color: white;
+  }
+}
