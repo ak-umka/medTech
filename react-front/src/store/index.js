@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import registerReducer from './reducers/auth.reducer'
+import authReducer from './reducers/auth.reducer'
+import recordReducer from './reducers/record.reducer'
 
 export const store = configureStore({
   reducer: combineReducers({
-    register: registerReducer,
+    auth: authReducer,
+    record: recordReducer,
   }),
 })
