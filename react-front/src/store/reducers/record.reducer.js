@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { postRecord } from 'store/actions/record.action'
+import {
+  createRecord,
+  getRecords,
+  getRecordById,
+} from 'store/actions/record.action'
 
 const initialState = {
   data: null,
@@ -13,18 +17,29 @@ const recordSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(postRecord.pending, (state) => {
-        state.loading = true
-        state.error = null
-      })
-      .addCase(postRecord.fulfilled, (state, action) => {
-        state.loading = false
-        state.data = action.payload
-      })
-      .addCase(postRecord.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload
-      })
+      .addCase(
+        createRecord.pending || getRecords.pending || getRecordById.pending,
+        (state) => {
+          state.loading = true
+          state.error = null
+        },
+      )
+      .addCase(
+        createRecord.fulfilled ||
+          getRecords.fulfilled ||
+          getRecordById.fulfilled,
+        (state, action) => {
+          state.loading = false
+          state.data = action.payload
+        },
+      )
+      .addCase(
+        createRecord.rejected || getRecords.rejected || getRecordById.rejected,
+        (state, action) => {
+          state.loading = false
+          state.error = action.payload
+        },
+      )
   },
 })
 

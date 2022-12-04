@@ -179,7 +179,7 @@ function CreateRecordPage() {
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default CreateRecordPage;
+export default CreateRecordPage
