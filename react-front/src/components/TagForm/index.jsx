@@ -1,66 +1,136 @@
 import React, { useEffect, useRef, useState } from "react";
-
-function TagForm({ inputId, label, btnText, name, type, inputType }) {
+import { Controller, useForm } from "react-hook-form";
+function TagForm({
+  inputId = "inputId",
+  label = "Label",
+  btnText = "Добавить",
+  inputName = "inputName",
+  type = "text",
+  inputType = "input",
+  control,
+  setValue,
+}) {
   const tagInput = useRef();
-  const [tags, setTags] = useState({});
+  const tagRef = useRef();
+  const [tags, setTags] = useState([]);
+  const [text, setText] = useState("");
+  const [editedTag, setEditedTag] = useState(null);
 
   const addTag = (event, ref) => {
     if (event.key === "Enter" || event.type === "click") {
       event.preventDefault();
       if (ref.current.value === "") return;
-      if (tags.hasOwnProperty(ref.current.name)) {
-        const result = { ...tags };
-        console.log(result[ref.current.name]);
-        result[ref.current.name].push(ref.current.value);
-        setTags(result);
-      } else {
-        const result = { ...tags };
-        result[ref.current.name] = [ref.current.value];
-        setTags(result);
-      }
+      const result = [...tags];
+      result.push(ref.current.value);
+      setTags(result);
       ref.current.value = "";
-      event.preventDefault();
     }
   };
 
-  const removeTag = (event, ref, id) => {
+  const removeTag = (event, id) => {
     if (event.type === "click") {
-      var result = { ...tags };
-      result[ref.current.name].splice(id, 1);
-      console.log(result);
+      const result = [...tags];
+      result.splice(id, 1);
       setTags(result);
+    }
+    setEditedTag(null);
+    event.preventDefault();
+  };
+
+  const editTag = (event, id) => {
+    setEditedTag(id);
+    event.preventDefault();
+  };
+
+  const saveTag = (event, newTag, id) => {
+    if (event.key === "Enter" || event.type === "click") {
+      console.log(event);
+
+      if (newTag.current.id == id) {
+        if (newTag.current.innerText === "") {
+          removeTag(event, id);
+        } else {
+          const result = [...tags];
+          result[id] = newTag.current.innerText;
+          setTags(result);
+        }
+        setEditedTag(null);
+      }
+      event.preventDefault();
     }
   };
 
   useEffect(() => {
     console.log(tags);
-  }, [tags]);
+    setText(tags.join(", "));
+    setValue(inputName, {
+      tags: tags,
+      text: text,
+    });
+  }, [tags, text]);
+
+  useEffect(() => {
+    if (!editedTag) return;
+    tagRef.current.focus();
+  }, [editedTag]);
 
   return (
     <>
+      <Controller name={inputName} control={control} render={() => <></>} />
       <label htmlFor="record-name" className="form-label">
-        Жалобы при поступлении
+        {label}
       </label>
-      <div className="row ">
-        <div className="col-12 d-flex flex-wrap gap-1 mb-2">
-          {tags?.tagInput?.map((item, key) => (
-            <React.Fragment key={key}>
-              <div className="bg-primary rounded-2 text-light d-flex">
-                <p className="m-0 py-1 px-2">{item}</p>
+      <div className="row">
+        {tags.length ? (
+          <div className="col-12 d-flex flex-wrap gap-1 mb-2 ">
+            {tags?.map((item, key) => (
+              <React.Fragment key={key}>
                 <div
-                  className="bi bi-x-lg px-2 h-100 d-flex align-items-center"
-                  onClick={(event) => removeTag(event, tagInput, key)}
-                ></div>
-              </div>
-            </React.Fragment>
-          ))}
-        </div>
+                  className={`rounded-2 d-flex overflow-hidden ${
+                    editedTag === key ? "bg-light" : "bg-primary text-light "
+                  }   `}
+                >
+                  <p
+                    id={key}
+                    className={`m-0 py-1 px-2 ${
+                      editedTag === key
+                        ? "form-control rounded-start rounded-0"
+                        : ""
+                    }`}
+                    contentEditable={editedTag === key ? "true" : "false"}
+                    ref={editedTag === key ? tagRef : null}
+                    onKeyDown={(event) => saveTag(event, tagRef, key)}
+                    onBlur={(event) => saveTag(event, tagRef, key)}
+                  >
+                    {item}
+                  </p>
+                  {editedTag === key ? (
+                    <div
+                      className="bi bi-check-lg px-2 h-100 d-flex align-items-center bg-success text-light "
+                      onClick={(event) => saveTag(event, tagRef, key)}
+                    ></div>
+                  ) : (
+                    <div
+                      className="bi bi-pencil px-2 h-100 d-flex align-items-center bg-warning text-light"
+                      onClick={(event) => editTag(event, key)}
+                    ></div>
+                  )}
+
+                  <div
+                    className="bi bi-x-lg px-2 h-100 d-flex align-items-center bg-danger text-light"
+                    onClick={(event) => removeTag(event, key)}
+                  ></div>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        ) : null}
         <div className="col-12 d-flex gap-2">
           <input
-            type="text"
+            type={type}
             className="form-control"
-            id="record-name"
-            name="tagInput"
+            id={inputId}
+            name={inputName}
             ref={tagInput}
             onKeyDownCapture={(event) => addTag(event, tagInput)}
           />
@@ -68,7 +138,7 @@ function TagForm({ inputId, label, btnText, name, type, inputType }) {
             className="btn btn-primary"
             onClick={(event) => addTag(event, tagInput)}
           >
-            Добавить
+            {btnText}
           </button>
         </div>
       </div>
