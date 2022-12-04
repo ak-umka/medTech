@@ -397,7 +397,7 @@ function Accordion() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <Tumor />
+                    <Tumor register={register} />
                   </div>
                 </div>
               </div>
