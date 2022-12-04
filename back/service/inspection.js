@@ -31,18 +31,19 @@ class InspectionService {
             other: inspection.other,
             underlyingDisease: inspection.underlyingDisease,
             concomitantDisease: inspection.concomitantDisease,
-            doctor: {
+            doctor: inspection.doctor ? {
                 id: inspection.doctor._id,
                 firstname: inspection.doctor.firstname,
                 lastname: inspection.doctor.lastname,
                 email: inspection.doctor.email,
-            },
-            patient: {
-                id: inspection.patient._id,
-                firstname: inspection.patient.firstname,
-                lastname: inspection.patient.lastname,
-                email: inspection.patient.email,
-            },
+            } : null,
+            patient: inspection.patient ?
+                {
+                    id: inspection.patient._id,
+                    firstname: inspection.patient.firstname,
+                    lastname: inspection.patient.lastname,
+                    email: inspection.patient.email,
+                } : null,
             date: inspection.date,
         }
     };
@@ -65,18 +66,19 @@ class InspectionService {
                     other: inspection.other,
                     underlyingDisease: inspection.underlyingDisease,
                     concomitantDisease: inspection.concomitantDisease,
-                    doctor: {
+                    doctor: inspection.doctor ? {
                         id: inspection.doctor._id,
                         firstname: inspection.doctor.firstname,
                         lastname: inspection.doctor.lastname,
                         email: inspection.doctor.email,
-                    },
-                    patient: {
-                        id: inspection.patient._id,
-                        firstname: inspection.patient.firstname,
-                        lastname: inspection.patient.lastname,
-                        email: inspection.patient.email,
-                    },
+                    } : null,
+                    patient: inspection.patient ?
+                        {
+                            id: inspection.patient._id,
+                            firstname: inspection.patient.firstname,
+                            lastname: inspection.patient.lastname,
+                            email: inspection.patient.email,
+                        } : null,
                     date: inspection.date,
                 }
             })
@@ -102,18 +104,19 @@ class InspectionService {
             other: inspection.other,
             underlyingDisease: inspection.underlyingDisease,
             concomitantDisease: inspection.concomitantDisease,
-            doctor: {
+            doctor: inspection.doctor ? {
                 id: inspection.doctor._id,
                 firstname: inspection.doctor.firstname,
                 lastname: inspection.doctor.lastname,
                 email: inspection.doctor.email,
-            },
-            patient: {
-                id: inspection.patient._id,
-                firstname: inspection.patient.firstname,
-                lastname: inspection.patient.lastname,
-                email: inspection.patient.email,
-            },
+            } : null,
+            patient: inspection.patient ?
+                {
+                    id: inspection.patient._id,
+                    firstname: inspection.patient.firstname,
+                    lastname: inspection.patient.lastname,
+                    email: inspection.patient.email,
+                } : null,
             date: inspection.date,
         }
     };
