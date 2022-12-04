@@ -18,7 +18,10 @@
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
+<<<<<<< HEAD
+=======
     "react-redux": "^8.0.5",
+>>>>>>> 6547c58e008d8b5c4f4dc5ebc10fffebe14d8d7d
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
     "sass": "^1.56.1",
