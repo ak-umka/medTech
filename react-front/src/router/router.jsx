@@ -4,8 +4,9 @@ import {
   LoginPage,
   RecordsPage,
   CreateRecordPage,
-} from "pages";
-import { Routes, Route } from "react-router-dom";
+} from 'pages'
+import Accordion from 'components/Accordion'
+import { Routes, Route } from 'react-router-dom'
 
 function MyRouter() {
   return (
@@ -15,8 +16,9 @@ function MyRouter() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/records" element={<RecordsPage />} />
       <Route path="/records/create" element={<CreateRecordPage />} />
+      <Route path="/acc" element={<Accordion />} />
     </Routes>
-  );
+  )
 }
 
-export default MyRouter;
+export default MyRouter
