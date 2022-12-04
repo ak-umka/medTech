@@ -1,4 +1,32 @@
+import { now } from "jquery";
+import { useState } from "react";
+
 export const OAK = (props) => {
+  const [oak, setOAK] = useState({
+    name: "ОАК",
+    date: new Date(),
+    values: [
+      {
+        name: "Нв",
+        metric: "г/л",
+        value: null,
+        fulltext: null,
+      },
+      {
+        name: "эрит",
+        metric: "*s",
+        value: null,
+        fulltext: null,
+      },
+      {
+        name: "Ht",
+        metric: "%",
+        value: null,
+        fulltext: null,
+      },
+    ],
+  });
+
   return (
     <>
       <div className="form-group">
@@ -9,7 +37,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="nv"
-              {...props.register('nv')}
+              {...props.register("nv")}
             />
           </div>
           <div className="col-2">
@@ -25,7 +53,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="erit"
-              {...props.register('erit')}
+              {...props.register("erit")}
             />
           </div>
           <div className="col-2">
@@ -41,7 +69,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="Ht"
-              {...props.register('Ht')}
+              {...props.register("Ht")}
             />
           </div>
           <div className="col-2">
@@ -57,7 +85,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="leikotcit"
-              {...props.register('leikotcit')}
+              {...props.register("leikotcit")}
             />
           </div>
           <div className="col-2">
@@ -73,7 +101,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="tromb"
-              {...props.register('tromb')}
+              {...props.register("tromb")}
             />
           </div>
           <div className="col-2">
@@ -89,7 +117,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="eoziofil"
-              {...props.register('eoziofil')}
+              {...props.register("eoziofil")}
             />
           </div>
           <div className="col-2">
@@ -105,7 +133,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="monocit"
-              {...props.register('monocit')}
+              {...props.register("monocit")}
             />
           </div>
           <div className="col-2">
@@ -121,7 +149,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="limfocit"
-              {...props.register('limfocit')}
+              {...props.register("limfocit")}
             />
           </div>
           <div className="col-2">*10/9</div>
@@ -135,7 +163,7 @@ export const OAK = (props) => {
               type="number"
               className="form-control"
               id="soe"
-              {...props.register('soe')}
+              {...props.register("soe")}
             />
           </div>
           <div className="col-2">
@@ -144,5 +172,5 @@ export const OAK = (props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};

@@ -1,3 +1,4 @@
+import Accordion from "components/Accordion";
 import CustomTextArea from "components/CustomTextarea";
 import MedicalHistoryForm from "components/MedicalHistoryForm";
 import TagForm from "components/TagForm";
@@ -26,17 +27,6 @@ function CreateRecordPage() {
             <div className="row">
               <div className="col">
                 <div className="mb-3">
-                  <label htmlFor="record-name" className="form-label">
-                    Название
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="record-name"
-                    {...register("recordName")}
-                  />
-                </div>
-                <div className="mb-3">
                   <label htmlFor="record-patient" className="form-label">
                     Пациент
                   </label>
@@ -56,17 +46,6 @@ function CreateRecordPage() {
                     className="form-control"
                     id="record-doctor"
                     {...register("record-doctor")}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="record-data" className="form-label">
-                    Дата
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="record-data"
-                    {...register("record-data")}
                   />
                 </div>
                 <div className="mb-3">
@@ -92,6 +71,9 @@ function CreateRecordPage() {
                     control={control}
                     setValue={setValue}
                   /> */}
+                </div>
+                <div className="mb-3">
+                  <Accordion />
                 </div>
                 <div className="mb-3">
                   <TagForm
@@ -179,7 +161,7 @@ function CreateRecordPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
 
-export default CreateRecordPage
+export default CreateRecordPage;

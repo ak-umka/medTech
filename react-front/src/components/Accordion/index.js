@@ -1,17 +1,18 @@
-import { useForm } from 'react-hook-form'
-import { OAK } from './form/oak.form'
-import { Biochemical } from './form/biochemical.form'
-import { OAM } from './form/oam.form'
-import { Coagulogram } from './form/coagulogram.form'
-import { BgBC } from './form/bgBC.form'
-import { Tumor } from './form/tumor.form'
+import { useForm } from "react-hook-form";
+import { OAK } from "./form/oak.form";
+import { Biochemical } from "./form/biochemical.form";
+import { OAM } from "./form/oam.form";
+import { Coagulogram } from "./form/coagulogram.form";
+import { BgBC } from "./form/bgBC.form";
+import { Tumor } from "./form/tumor.form";
 
 function Accordion() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = (data, event) => {
+    console.log(data);
+    event.preventDefault();
+  };
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,7 +121,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="microreaction"
-                            {...register('microreaction')}
+                            {...register("microreaction")}
                           />
                         </div>
                         <div className="col-2">
@@ -159,7 +160,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="kal"
-                            {...register('kal')}
+                            {...register("kal")}
                           />
                         </div>
                         <div className="col-2">
@@ -198,7 +199,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="vich"
-                            {...register('vich')}
+                            {...register("vich")}
                           />
                         </div>
                         <div className="col-2">
@@ -237,7 +238,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="rentgen"
-                            {...register('rentgen')}
+                            {...register("rentgen")}
                           />
                         </div>
                         <div className="col-2">
@@ -276,7 +277,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="ekg"
-                            {...register('ekg')}
+                            {...register("ekg")}
                           />
                         </div>
                         <div className="col-2">
@@ -340,7 +341,7 @@ function Accordion() {
                             type="text"
                             className="form-control"
                             id="anca"
-                            {...register('anca')}
+                            {...register("anca")}
                           />
                         </div>
                         <div className="col-2">
@@ -410,7 +411,7 @@ function Accordion() {
         </div>
       </form>
     </>
-  )
+  );
 }
 
-export default Accordion
+export default Accordion;

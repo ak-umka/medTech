@@ -65,7 +65,7 @@ function MedicalHistoryForm({
                 <label className="form-label">Год</label>
                 <DatePicker
                   className="form-control"
-                  dateFormat="yyyy г.   "
+                  dateFormat="yyyy г."
                   selected={item.date}
                   onChange={(date) => setDate(date, key)}
                   showYearPicker
@@ -81,7 +81,7 @@ function MedicalHistoryForm({
               </div>
               <div className="col-auto">
                 <button
-                  className="btn btn-danger bi-x-lg"
+                  className="btn btn-danger bi bi-x-lg "
                   onClick={(event) => removeData(event, key)}
                 />
               </div>
